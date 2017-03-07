@@ -25,54 +25,54 @@ function geronimo() {
 
 
 	/* AJAX stuff */
-	function getHighscore() {
-		setTimeout(ajax_get,30);
-	}
-	function ajax_get() {
-		var date = new Date().getTime();
-		$.ajax({
-		   datatype: "json",
-		   type: "GET",
-		   url: "data/db-handler.php",
-		   data: {
-			 timestamp: date,
-			 action: "get"
-			 },
-		   success: function(msg){
-			 $("#highscore-list").text("");
-			 for (var i = 0; i < msg.length; i++) {
-				$("#highscore-list").append("<li>"+msg[i]['name']+"<span id='score'>"+msg[i]['score']+"</span></li>");
-			 }
-		   } 
-		});
-	}
-	function ajax_add(n, s, l) {
+	// function getHighscore() {
+	// 	setTimeout(ajax_get,30);
+	// }
+	// function ajax_get() {
+	// 	var date = new Date().getTime();
+	// 	$.ajax({
+	// 	   datatype: "json",
+	// 	   type: "GET",
+	// 	   url: "data/db-handler.php",
+	// 	   data: {
+	// 		 timestamp: date,
+	// 		 action: "get"
+	// 		 },
+	// 	   success: function(msg){
+	// 		 $("#highscore-list").text("");
+	// 		 for (var i = 0; i < msg.length; i++) {
+	// 			$("#highscore-list").append("<li>"+msg[i]['name']+"<span id='score'>"+msg[i]['score']+"</span></li>");
+	// 		 }
+	// 	   } 
+	// 	});
+	// }
+	// function ajax_add(n, s, l) {
 
-		$.ajax({
-		   type: 'POST',
-		   url: 'data/db-handler.php',
-		   data: {
-			 action: 'add',
-			 name: n,
-			 score: s,
-			 level: l
-			 },
-		   dataType: 'json',
-		   success: function(data) {
-				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
-			},
-			error: function(errorThrown) {
-				console.log(errorThrown);
-			}
-		});
-	}
+	// 	$.ajax({
+	// 	   type: 'POST',
+	// 	   url: 'data/db-handler.php',
+	// 	   data: {
+	// 		 action: 'add',
+	// 		 name: n,
+	// 		 score: s,
+	// 		 level: l
+	// 		 },
+	// 	   dataType: 'json',
+	// 	   success: function(data) {
+	// 			console.log('Highscore added: ' + data);
+	// 			$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+	// 		},
+	// 		error: function(errorThrown) {
+	// 			console.log(errorThrown);
+	// 		}
+	// 	});
+	// }
 
-	function addHighscore() {
-			var name = $("input[type=text]").val();
-            $("#highscore-form").html("Saving highscore...");
-            ajax_add(name ,game.score.score, game.level);
-	}
+	// function addHighscore() {
+	// 		var name = $("input[type=text]").val();
+    //         $("#highscore-form").html("Saving highscore...");
+    //         ajax_add(name ,game.score.score, game.level);
+	// }
 	
 	function buildWall(context,gridX,gridY,width,height) {
 		console.log("BuildWall");
@@ -183,7 +183,7 @@ function geronimo() {
 			inky.dazzle();	
 			pinky.dazzle();	
 			blinky.dazzle();	
-			clyde.dazzle();
+			//clyde.dazzle();
 		};
 
 		this.endGhostFrightened = function() {
@@ -192,7 +192,7 @@ function geronimo() {
 			inky.undazzle();
 			pinky.undazzle();
 			blinky.undazzle();
-			clyde.undazzle();
+			//clyde.undazzle();
 			};
 		
 			
@@ -398,22 +398,22 @@ function geronimo() {
 			
 			// initalize Ghosts, avoid memory flooding
 			if (pinky === null || pinky === undefined) {
-				pinky = new Ghost("pinky",7,5,'img/pinky.svg',2,2);
-				inky = new Ghost("inky",8,5,'img/inky.svg',13,11);
-				blinky = new Ghost("blinky",9,5,'img/blinky.svg',13,0);
-				clyde = new Ghost("clyde",10,5,'img/clyde.svg',2,11);
+				pinky = new Ghost("pinky",7,5,'img/green-64.png',2,2);
+				inky = new Ghost("inky",8,5,'img/violet-64.png',13,11);
+				blinky = new Ghost("blinky",9,5,'img/blue-64.png',13,0);
+				//clyde = new Ghost("clyde",10,5,'img/clyde.svg',2,11);
 			}
 			else {
 				//console.log("ghosts reset");
 				pinky.reset();
 				inky.reset();
 				blinky.reset();
-				clyde.reset();
+				//clyde.reset();
 			}
 			blinky.start();	// blinky is the first to leave ghostHouse
 			inky.start();
 			pinky.start();
-			clyde.start();
+			//clyde.start();
 		};
 
 		this.check = function() {
@@ -802,7 +802,7 @@ function geronimo() {
 			}	
 			
 			
-			var oppDir = this.getOppositeDirection();	// ghosts are not allowed to change direction 180°
+			var oppDir = this.getOppositeDirection();	// ghosts are not allowed to change direction 180ï¿½
 			
 			var dirs = [{},{},{},{}];		
 			dirs[0].field = game.getMapContent(pX,pY-1);
@@ -1095,7 +1095,7 @@ function geronimo() {
 			inky.dazzle();
 			pinky.dazzle();
 			blinky.dazzle();
-			clyde.dazzle();
+			//clyde.dazzle();
 		};
 		this.disableBeastMode = function() { 
 			this.beastMode = false; 
@@ -1103,7 +1103,7 @@ function geronimo() {
 			inky.undazzle();
 			pinky.undazzle();
 			blinky.undazzle();
-			clyde.undazzle();
+			//clyde.undazzle();
 			};
 		this.move = function() {
 		
@@ -1181,7 +1181,7 @@ function geronimo() {
 			pinky.reset();
 			inky.reset();
 			blinky.reset();
-			clyde.reset();
+			//clyde.reset();
     		this.lives--;
 	        console.log("pacman died, "+this.lives+" lives left");
 	    	if (this.lives <= 0) {
@@ -1280,20 +1280,20 @@ function checkAppCache() {
 			if (!(game.gameOver == true))	game.pauseResume();
 		});
 
-		$('body').on('click', '#score-submit', function(){
-			console.log("submit highscore pressed");
-			if ($('#playerName').val() === "" || $('#playerName').val() === undefined) {
-				$('#form-validater').html("Please enter a name<br/>");
-			} else {
-				$('#form-validater').html("");
-				addHighscore();
-			}
-		});
+		// $('body').on('click', '#score-submit', function(){
+		// 	console.log("submit highscore pressed");
+		// 	if ($('#playerName').val() === "" || $('#playerName').val() === undefined) {
+		// 		$('#form-validater').html("Please enter a name<br/>");
+		// 	} else {
+		// 		$('#form-validater').html("");
+		// 		addHighscore();
+		// 	}
+		// });
 
-		$('body').on('click', '#show-highscore', function(){
-			game.showContent('highscore-content');
-			getHighscore();
-		});
+		// $('body').on('click', '#show-highscore', function(){
+		// 	game.showContent('highscore-content');
+		// 	getHighscore();
+		// });
 		
 		// Hammerjs Touch Events
 		/*Hammer('#canvas-container').on("tap", function(event) {
@@ -1350,10 +1350,10 @@ function checkAppCache() {
 		$(document).on('click','.button#newGame',function(event) {
 			game.newGame();
 		});
-		$(document).on('click','.button#highscore',function(event) {
-		    game.showContent('highscore-content'); 
-			getHighscore();
-		});
+		// $(document).on('click','.button#highscore',function(event) {
+		//     game.showContent('highscore-content'); 
+		// 	getHighscore();
+		// });
 		$(document).on('click','.button#instructions',function(event) {
 		    game.showContent('instructions-content');
 		});
@@ -1432,7 +1432,7 @@ function checkAppCache() {
 				pinky.draw(context);
 				blinky.draw(context);
 				inky.draw(context);
-				clyde.draw(context);
+				//clyde.draw(context);
 				
 				
 				// Pac Man
@@ -1495,7 +1495,7 @@ function checkAppCache() {
 				blinky.move();
 				inky.move();
 				pinky.move();
-				clyde.move();
+				//clyde.move();
 
 				game.checkGhostMode();
 			}

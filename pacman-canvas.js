@@ -1186,7 +1186,7 @@ function geronimo() {
 	        console.log("pacman died, "+this.lives+" lives left");
 	    	if (this.lives <= 0) {
 				//var input = "<div id='highscore-form'><span id='form-validater'></span><input type='text' id='playerName'/><span class='button' id='score-submit'>save</span></div>";
-				game.showMessage("Game over","Total Score: "+game.score.score+input);
+				game.showMessage("Game over","Total Score: "+ game.score.score + "<br/>(Refresh to start again!)");
 				game.gameOver = true;
 				$('#playerName').focus();
 				}
